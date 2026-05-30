@@ -11,12 +11,12 @@ namespace MenuManager
 {
     public class MenuInstance : IMenu
     {
-        public Action<CCSPlayerController> BackAction;
-        public Action<CCSPlayerController> ResetAction;
+        public Action<CCSPlayerController>? BackAction;
+        public Action<CCSPlayerController>? ResetAction;
 
         MenuType forcetype;
 
-        public MenuInstance(string _title, Action<CCSPlayerController> _back_action = null, Action<CCSPlayerController> _reset_action = null, MenuType _forcetype = MenuType.Default)
+        public MenuInstance(string _title, Action<CCSPlayerController>? _back_action = null, Action<CCSPlayerController>? _reset_action = null, MenuType _forcetype = MenuType.Default)
         {
             Title = _title;
             ExitButton = true;
@@ -60,7 +60,7 @@ namespace MenuManager
 
         public void Open(CCSPlayerController player)
         {
-            IMenu menu = null;
+            IMenu? menu = null;
 
             if (forcetype == MenuType.Default)
                 forcetype = Misc.GetCurrentPlayerMenu(player);
@@ -77,7 +77,7 @@ namespace MenuManager
                 case MenuType.MetamodMenu: menu = new ButtonMenu(Title, true);  break;
             }
 
-            menu.ExitButton = ExitButton;
+            menu!.ExitButton = ExitButton;
             menu.PostSelectAction = PostSelectAction;
 
             if (BackAction != null)

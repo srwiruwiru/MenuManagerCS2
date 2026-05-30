@@ -1,30 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
     <OutputType>Library</OutputType>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <OutputPath>../addons/counterstrikesharp/plugins/MenuManagerCore</OutputPath>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EmitSound.cs" />
+    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.369" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
+    <Reference Include="PlayerSettingsApi"><HintPath>..\PlayerSettingsApi.dll</HintPath></Reference>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CounterStrikeSharp.API" Version="1.0.305" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="8.0.4" />
-  </ItemGroup>
-
-<ItemGroup>
     <ProjectReference Include="..\MenuManagerApi\MenuManagerApi.csproj" />
   </ItemGroup>
-
-<ItemGroup>
-  <Reference Include="PlayerSettingsApi">
-    <HintPath>..\PlayerSettingsApi.dll</HintPath>
-  </Reference>
-</ItemGroup>
 
 </Project>

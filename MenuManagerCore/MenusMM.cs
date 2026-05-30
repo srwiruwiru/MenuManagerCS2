@@ -394,18 +394,18 @@ internal static class MenusMM
                 var index = int.Parse(szBack);
                 if(menu.PostSelectAction != PostSelectAction.Nothing)
                     ClosePlayerMenu(iSlot);
-                menu.MenuOptions[index].OnSelect(player, menu.MenuOptions[index]);
+                menu.MenuOptions[index].OnSelect(player!, menu.MenuOptions[index]);
 
                 
                 switch (menu.PostSelectAction)
                 {
-                    case PostSelectAction.Close: ClosePlayerMenu(iSlot); Control.CloseMenu(Utilities.GetPlayerFromSlot(iSlot)); break;                    
-                    case PostSelectAction.Reset: if (menu.ResetAction != null && !Control.HasOpenedMenu(player)) Server.NextFrameAsync(() => menu.ResetAction(player)); break;
+                    case PostSelectAction.Close: ClosePlayerMenu(iSlot); Control.CloseMenu(Utilities.GetPlayerFromSlot(iSlot)!); break;                    
+                    case PostSelectAction.Reset: if (menu.ResetAction != null && !Control.HasOpenedMenu(player!)) Server.NextFrameAsync(() => menu.ResetAction(player!)); break;
                 }
 
             }
             else if (iItem == 7 && menu.BackAction != null)
-                menu.BackAction(player);
+                menu.BackAction(player!);
         };
         
         AddCallbackInfo(slot, callback);

@@ -31,7 +31,7 @@ namespace MenuManager
             menu = _menu;
             
             if(new_mod == 0.0f)
-                prev_mod = player.PlayerPawn.Value.VelocityModifier;
+                prev_mod = player.PlayerPawn.Value!.VelocityModifier;
             else
                 prev_mod = new_mod;
 

@@ -11,8 +11,8 @@ namespace MenuManager
 {
     public class ButtonMenu : IMenu
     {
-        public Action<CCSPlayerController> BackAction = null;
-        public Action<CCSPlayerController> ResetAction = null;
+        public Action<CCSPlayerController>? BackAction = null;
+        public Action<CCSPlayerController>? ResetAction = null;
         public bool Metamod = false;
 
         public ButtonMenu(string _title, bool _metamod = false)

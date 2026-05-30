@@ -14,7 +14,7 @@ namespace MenuManager;
 internal static class Control
 {
     public static List<PlayerInfo> menus = new List<PlayerInfo>();
-    private static MenuManagerCore hPlugin;
+    private static MenuManagerCore? hPlugin;
 
     public static void AddMenu(CCSPlayerController player, ButtonMenu inst)
     {
@@ -42,7 +42,7 @@ internal static class Control
         var players = Utilities.GetPlayers();
         foreach (var player in players)
         {
-            if(player != null && player.IsValid && !player.IsBot && !player.IsHLTV && player.Connected == PlayerConnectedState.PlayerConnected)
+            if(player != null && player.IsValid && !player.IsBot && !player.IsHLTV && player.Connected == PlayerConnectedState.Connected)
                 AddMenu(player, inst);
         }
     }
@@ -76,8 +76,8 @@ internal static class Control
                 PlayerButtons buttons = 0;
 
                 buttons = player.Buttons;
-                if(!hPlugin.Config.MoveWhileOpenMenu)
-                    player.PlayerPawn.Value.VelocityModifier = 0.0f;
+                if(!hPlugin!.Config.MoveWhileOpenMenu)
+                    player.PlayerPawn.Value!.VelocityModifier = 0.0f;
                 
                 if (!menu.IsEqualButtons(buttons.ToString()))
                 {
@@ -99,7 +99,7 @@ internal static class Control
                     {                            
                         menu.Close(true);
                         if (!hPlugin.Config.MoveWhileOpenMenu)
-                            player.PlayerPawn.Value.VelocityModifier = menu.GetMod();
+                            player.PlayerPawn.Value!.VelocityModifier = menu.GetMod();
                         menus.RemoveAt(i);
                         i--;
                         continue;
@@ -130,7 +130,7 @@ internal static class Control
         MenusMM.ClosePlayerMenu(player.Slot);
     }
  
-    internal static bool HasOpenedMenu(CCSPlayerController player, PlayerInfo info = null)
+    internal static bool HasOpenedMenu(CCSPlayerController player, PlayerInfo? info = null)
     {     
         
         foreach (var menu in menus)
@@ -149,6 +149,6 @@ internal static class Control
 
     internal static MenuManagerCore GetPlugin()
     {
-        return hPlugin;
+        return hPlugin!;
     }
 }
